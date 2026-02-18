@@ -1,4 +1,4 @@
-name: Unity Build
+name: Simple Unity Android Build
 
 on:
   push:
@@ -10,21 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Unity
-        uses: game-ci/unity-builder@v4
+      - uses: actions/checkout@v4
+      - uses: game-ci/unity-builder@v4
         with:
-          version: 2022.3.15f1
+          version: 6000.3.8f1
           android: true
-
-      - name: Build Project
-        uses: game-ci/unity-builder@v4
+      - uses: game-ci/unity-builder@v4
         with:
           targetPlatform: Android
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: TT48
+          name: MyUnityGame
           path: Builds/Android/*.apk
