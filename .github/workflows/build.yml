@@ -1,0 +1,30 @@
+name: Unity Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Unity
+        uses: game-ci/unity-builder@v3
+        with:
+          version: 2022.3.15f1
+          android: true
+
+      - name: Build Project
+        uses: game-ci/unity-builder@v3
+        with:
+          targetPlatform: Android
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: TT48
+          path: Builds/Android/*.apk
